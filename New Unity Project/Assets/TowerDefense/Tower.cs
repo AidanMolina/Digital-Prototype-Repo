@@ -2,6 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum TowerType
+{
+    None,
+
+    Normal,
+
+    Artillery,
+
+    Magic
+}
+
 public class Tower : MonoBehaviour
 {
     public int cost = 1000;
@@ -13,6 +24,9 @@ public class Tower : MonoBehaviour
     private bool shooting;
     private float distanceToTarget = 10000f;
     private GameObject target;
+
+    [SerializeField] GameObject bullet;
+    public TowerType type = TowerType.Normal;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +58,19 @@ public class Tower : MonoBehaviour
                 fired = false;
             }
         }
+
+        if(Input.GetKeyDown("up")){
+            type = TowerType.Normal;
+            Debug.Log("tower type changed.");
+        }
+        if(Input.GetKeyDown("down")){
+            type = TowerType.Artillery;
+            Debug.Log("tower type changed.");
+        }
+        if(Input.GetKeyDown("right")){
+            type = TowerType.Magic;
+            Debug.Log("tower type changed.");
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other){
@@ -53,6 +80,6 @@ public class Tower : MonoBehaviour
     }
 
     void Shoot(){
-        Debug.Log("Shot fired");
+        bullet.GetComponent<TowerBullet>().createBullet(type, target.transform.position, gameObject.transform.position);
     }
 }

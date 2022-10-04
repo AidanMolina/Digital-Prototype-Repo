@@ -10,6 +10,8 @@ public class TowerEnemy : MonoBehaviour
 
     public GameObject player;
 
+    EnemyType type;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +42,54 @@ public class TowerEnemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.tag == "Bullet"){
-            health -= 10;
+            TowerBullet bullet = other.GetComponent<TowerBullet>();
+            switch(bullet.type){
+                case TowerType.Normal:
+                    switch(type){
+                        case EnemyType.Normal:
+                            health = health - 10f;
+                            break;
+                        case EnemyType.Fortified:
+                            health = health - 5f;
+                            break;
+                        case EnemyType.Barrier:
+                            health = health - 15f;
+                            break;
+                    }
+                    break;
+                case TowerType.Artillery:
+                    switch(type){
+                        case EnemyType.Normal:
+                            health = health - 5f;
+                            break;
+                        case EnemyType.Fortified:
+                            health = health - 15f;
+                            break;
+                        case EnemyType.Barrier:
+                            health = health - 10f;
+                            break;
+                    }
+                    break;
+                case TowerType.Magic:
+                    switch(type){
+                        case EnemyType.Normal:
+                            health = health - 10f;
+                            break;
+                        case EnemyType.Fortified:
+                            health = health - 15f;
+                            break;
+                        case EnemyType.Barrier:
+                            health = health - 20f;
+                            break;
+                    }
+                    break;    
+            }
+            Debug.Log(health);
         }
+    }
+
+    public void createEnemy(Vector3 starPos, EnemyType Type){
+        type = Type;
+        Instantiate(gameObject, starPos, Quaternion.identity);
     }
 }

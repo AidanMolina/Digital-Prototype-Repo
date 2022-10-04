@@ -138,6 +138,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3469705108899927755, guid: eb1000f22f727df4ea6e96a6eb8e76b6, type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 1344267071}
     - target: {fileID: 3855574296926118943, guid: eb1000f22f727df4ea6e96a6eb8e76b6, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -285,11 +289,11 @@ GameObject:
   - component: {fileID: 1344267072}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!58 &1344267072
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -318,6 +322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 938be3a7ec54615479770a689ee7fba4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
 --- !u!212 &1344267074
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -426,7 +431,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2467393a2fdec474788258db3430caa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 3922639429236823772, guid: 2595751abd06ca9448399023ea32b608, type: 3}
+  enemy: {fileID: 2187072038572295381, guid: 2595751abd06ca9448399023ea32b608, type: 3}
+  type: 0
 --- !u!1001 &347420115446811648
 PrefabInstance:
   m_ObjectHideFlags: 0
